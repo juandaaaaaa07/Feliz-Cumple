@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="imagen/regalo.jpg">
+  <title>Tarjeta de Cumpleaños 📖🎉</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #ff80ab, #82b1ff);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Comic Sans MS', cursive;
+      overflow-x: hidden;
+    }
+
+    #tarjeta {
+      width: 55vw;
+      max-width: 700px;
+      height: 60vh;
+      max-height: 500px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+
+    .pagina {
+      background: #fff0f5;
+      padding: 30px;
+      box-sizing: border-box;
+      font-size: 1.5em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      line-height: 1.6;
+      position: relative;
+      border-radius: 12px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .pagina img {
+      max-width: 60%;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .portada {
+      background: linear-gradient(135deg, #7e57c2, #ec407a);
+      color: white;
+      font-size: 2em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .portada h1 { margin: 0; font-size: 2.3em; }
+
+    .contraportada {
+      background: linear-gradient(135deg, #ec407a, #7e57c2);
+      color: white;
+      font-size: 1.8em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .contraportada p { margin-top: 15px; font-size: 1.2em; }
+
+    .controles {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    button {
+      background: #7e57c2;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover { background: #5e35b1; }
+    .volver { background: #ff4081; }
+    .volver:hover { background: #e91e63; }
+
+    .confeti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: caer 3s linear infinite;
+    }
+    @keyframes caer {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
+    }
+
+    @media(max-width: 600px){
+      #tarjeta { width: 90vw; height: 60vh; }
+      .pagina { font-size: 1.2em; padding: 20px; }
+      .portada h1 { font-size: 1.8em; }
+    }
+      .pagina:nth-child(1) { background: linear-gradient(135deg, #7e57c2, #ec407a); color: white; } /* Portada */
+  .pagina:nth-child(2) { background: linear-gradient(135deg, #ffcc80, #ffab91); } 
+  .pagina:nth-child(3) { background: linear-gradient(135deg, #80deea, #26c6da); }
+  .pagina:nth-child(4) { background: linear-gradient(135deg, #ff8a65, #ff7043); }
+  .pagina:nth-child(5) { background: linear-gradient(135deg, #aed581, #dce775); }
+  .pagina:nth-child(6) { background: linear-gradient(135deg, #f48fb1, #ce93d8); }
+  .pagina:nth-child(7) { background: linear-gradient(135deg, #4db6ac, #81c784); }
+  .pagina:nth-child(8) { background: linear-gradient(135deg, #ec407a, #7e57c2); color: white; } /* Contraportada */
+
+  /* Efecto mágico y brillo */
+  .pagina {
+    padding: 25px;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 1.6;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3), inset 0 0 15px rgba(255,255,255,0.2);
+    color: #333;
+    overflow: hidden;
+  }
+
+  /* Confeti sutil en todas las páginas */
+  .pagina::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: brillar 4s linear infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes brillar {
+    0% { transform: rotate(0deg); opacity: 0.5; }
+    100% { transform: rotate(360deg); opacity: 1; }
+  }
+
+  .pagina img {
+    max-width: 60%;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+
+  .portada h1 { font-size: 2.5em; }
+  .contraportada p { font-size: 1.3em; margin-top: 20px; }
+
+  /* Botones */
+  .controles button {
+    background: #7e57c2;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .controles button:hover { background: #5e35b1; }
+  .volver { background: #ff4081; }
+  .volver:hover { background: #e91e63; }
+   @keyframes caer {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
+  }
+
+  /* Media queries adicionales */
+  @media(max-width: 768px){
+    #tarjeta { width: 95vw; height: 55vh; }
+  }
+  @media(max-width: 480px){
+    #tarjeta { height: 50vh; }
+    .pagina img { max-width: 80%; }
+  }
+
+  </style>
+</head>
+<body>
+
+<div id="tarjeta">
+  <!-- Portada -->
+  <div class="pagina portada">
+    <h1>🎉 ¡Feliz Cumpleaños Zoraida! 🎂</h1>
+    <p>Una sorpresa en forma de libro 📖</p>
+    <audio id="musica" loop>
+      <source src="sonido/happy-birthday-357371.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
+  </div>
+
+  <!-- Página en blanco -->
+  <div class="pagina"></div>
+
+  <!-- Páginas internas -->
+  <div class="pagina">
+    <div>🎶 Hoy es tu día especial</div>
+    <div style="margin-top: 20px;">👉 Pasa la página...</div>
+  </div>
+
+  <div class="pagina" id="pagina-torta">
+    <div>🎂 Una torta para ti:</div>
+    <img src="https://i.pinimg.com/originals/9e/8d/35/9e8d3531b600622eb8b23afdc88a554b.gif" alt="Torta">
+  </div>
+
+  <div class="pagina">
+    <div>✨ Sopla las velas y pide un deseo 💖</div>
+  </div>
+
+  <div class="pagina">
+    <div>🎇 Que este año sea mágico,<br> lleno de risas, amor y sueños cumplidos.</div>
+  </div>
+
+  <div class="pagina">
+    <div>🎁 Con mucho cariño y aprecio<br> de Juan💕 </div>
+    <div>🎁 P.D: Te quedo debiendo<br> el regalo 💕</div>
+
+  </div>
+
+  <!-- Contraportada -->
+  <div class="pagina contraportada">
+    🎉 Fin de tu tarjeta 🎉
+    <p>🥂 ¡Brindemos por un nuevo año lleno de felicidad!</p>
+    <button class="volver" onclick="location.reload()">🔄 Volver al inicio</button>
+  </div>
+</div>
+
+<!-- Botones de navegación -->
+<div class="controles">
+  <button id="siguiente">➡️ Siguiente</button>
+  <button id="playPause">⏯️ Pausa/Reproduce Música</button>
+</div>
+
+<script>
+$(function(){
+  const tarjeta = $("#tarjeta");
+  const audio = document.getElementById("musica");
+
+  // Intentar reproducir al cargar (si el navegador permite autoplay)
+  document.addEventListener("DOMContentLoaded", ()=>{
+    audio.play().catch(()=> console.log("Autoplay bloqueado hasta interacción."));
+  });
+
+  tarjeta.turn({
+    width: tarjeta.width(),
+    height: tarjeta.height(),
+    autoCenter: true,
+    display: 'double',
+    elevation: 50,
+    gradients: true,
+    duration: 1000,
+    when: {
+      turning: function(event, page, view) {
+        let total = $(this).turn("pages");
+        if (page === 1 || page === total) {
+          $(this).turn("display", "single");
+        } else {
+          $(this).turn("display", "double");
+        }
+      },
+      turned: function(event, page, view){
+        // Solo controlar confeti, NO el audio
+        if(page === 4){ generarConfeti(30); } 
+        else { $(".confeti").remove(); }
+      }
+    }
+  });
+
+  $("#siguiente").click(()=> tarjeta.turn("next"));
+
+  // Botón de reproducir/pausar música
+  $("#playPause").click(()=>{
+    if(audio.paused){ 
+      audio.play().catch(()=> console.log("Necesita interacción del usuario."));
+    } else {
+      audio.pause();
+    }
+  });
+
+  $(window).resize(()=> tarjeta.turn("size", tarjeta.width(), tarjeta.height()));
+
+  function generarConfeti(cantidad){
+    $(".confeti").remove();
+    const pagina = $("#pagina-torta");
+    for(let i=0;i<cantidad;i++){
+      const confeti = $("<div class='confeti'></div>");
+      confeti.css({
+        left: Math.random()*100 + '%',
+        backgroundColor: `hsl(${Math.random()*360}, 100%, 50%)`,
+        animationDuration: (2+Math.random()*3)+'s'
+      });
+      pagina.append(confeti);
+    }
+  }
+});
+
+</script>
+
+</body>
+</html>
